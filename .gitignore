@@ -4,3 +4,6 @@ runs/
 venv_yolo8_hackathon_sick
 venv_sick/*
 
+/process_logic/__pycache__/*
+/process_logic/feature_computation/__pycache__/*
+/process_logic/image_acquisition/__pycache__/*
