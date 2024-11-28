@@ -62,6 +62,7 @@ class pad:
         
 
         global wire_pos
+        #print("wire_pos: ", wire_pos)
         if self.state == "unsoldered":
             wire_pos = []
             if(self.pad_state == self.state or self.pad_state == "in_process"):
