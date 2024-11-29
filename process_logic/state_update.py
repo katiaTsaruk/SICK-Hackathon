@@ -1,9 +1,10 @@
 import time
-
+import pyinterface_visual_feedback as visual
 iron_pos = None #top left x,y and width, height
 wire_pos = []
 
 max_allowed_centre_distance = 350
+feedback = visual.UserFeedback(port="COM5")
 
 #it does not correcpond to real soldering time
 #it is a time for computer thinking
@@ -44,6 +45,7 @@ class pad:
                     self.start_time = time.time()
                     self.substate = "start"
             else:
+                visual.feedback.idle() 
                 self.start_time = None
 
         elif(self.substate == "start"):
@@ -52,6 +54,8 @@ class pad:
                 print("fault time check:", time_diff)
                 if fault_time < time_diff:
                     self.substate = "in_process"
+                    visual.feedback.start_solder()
+
             else:
                 self.start_time = None
                 self.substate = "nothing"
@@ -92,6 +96,7 @@ class pad:
                     self.state = "presoldered"
                     self.substate = "nothing"
                     self.start_time = None
+                    visual.feedback.end_solder()
                     print("presoldering successful")
                     return "presoldering successful"
                 else:
@@ -106,6 +111,7 @@ class pad:
                     self.start_time = None
                     return "soldering successful"
                 else:
+                    visual.feedback.error() 
                     self.state = "invalid"
             else:
                 print("data error")

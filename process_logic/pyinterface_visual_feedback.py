@@ -16,7 +16,7 @@ class UserFeedback:
                 print(f"Connected to {port} at {baud_rate} baud.")
             else:
                 raise ConnectionError(f"Failed to open serial port: {port}")
-        except serial.SerialException as e:
+        except Exception as e:
             raise ConnectionError(f"Serial error: {e}")
 
     def send_command(self, command):
@@ -59,23 +59,23 @@ class UserFeedback:
 
 
 # Example usage
-if __name__ == "__main__":
-    try:
-        # Replace 'COM3' with the correct port for your ESP32
-        feedback = UserFeedback(port="COM3")
+# if __name__ == "__main__":
+#     try:
+#         # Replace 'COM3' with the correct port for your ESP32
+#         feedback = UserFeedback(port="COM3")
         
-        # Test commands
-        feedback.idle()            # Set to idle mode (white pulsing)
-        time.sleep(5)              # Wait for 5 seconds
-        feedback.start_solder()    # Set to start soldering mode (yellow constant)
-        time.sleep(10)              # Wait for 3 seconds
-        feedback.end_solder()      # Set to end soldering mode (green flash then constant)
-        time.sleep(10)              # Wait for 5 seconds
-        feedback.error()           # Set to error mode (red flashing)
-        time.sleep(10)   
+#         # Test commands
+#         feedback.idle()            # Set to idle mode (white pulsing)
+#         time.sleep(5)              # Wait for 5 seconds
+#         feedback.start_solder()    # Set to start soldering mode (yellow constant)
+#         time.sleep(10)              # Wait for 3 seconds
+#         feedback.end_solder()      # Set to end soldering mode (green flash then constant)
+#         time.sleep(10)              # Wait for 5 seconds
+#         feedback.error()           # Set to error mode (red flashing)
+#         time.sleep(10)   
         
-    except Exception as e:
-        print(f"Error: {e}")
-    finally:
-        # Ensure the connection is closed properly
-        feedback.close()
+#     except Exception as e:
+#         print(f"Error: {e}")
+#     finally:
+#         # Ensure the connection is closed properly
+#         feedback.close()
