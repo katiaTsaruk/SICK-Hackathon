@@ -6,6 +6,9 @@ venv_sick/*
 imgs/
 *.csv
 .vscode/
+Abobe Premiere Pro Auto-Save/
+*.mp4
+*.prproj
 
 /process_logic/__pycache__/*
 /process_logic/feature_computation/__pycache__/*
